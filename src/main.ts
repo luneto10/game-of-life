@@ -13,6 +13,7 @@ const resetButton = document.querySelector<HTMLElement>("[data-reset]")
 const playButton = document.querySelector<HTMLElement>("[data-play]")
 const speedSelect = document.querySelector<HTMLSelectElement>("[data-speed]")
 const sizeSelect = document.querySelector<HTMLSelectElement>("[data-size]")
+const wrapSelect = document.querySelector<HTMLSelectElement>("[data-wrap]")
 
 if (!gridContainer || !stepButton) {
     throw new Error("Grid container not found")
@@ -37,6 +38,7 @@ bindControls(
         play: playButton ?? undefined,
         speed: speedSelect ?? undefined,
         size: sizeSelect ?? undefined,
+        wrap: wrapSelect ?? undefined,
     },
     grid,
     () => {

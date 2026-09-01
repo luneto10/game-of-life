@@ -20,9 +20,11 @@ export class Grid {
     height: number
     state: boolean[][]
     next: boolean[][]
+    wrap: boolean
     constructor(width: number = DEFAULT_ROWS, height: number = DEFAULT_ROWS) {
         this.width = width
         this.height = height
+        this.wrap = true
         this.state = this.createGrid()
         this.next = this.createGrid()
     }
@@ -55,11 +57,19 @@ export class Grid {
         
         let count = 0
 
-        for (const [dRow, dCol] of NEIGHBOR_OFFSETS){
-            const neighborRow = row + dRow
-            const neighborCol = col + dCol
+        for (const [dRow, dCol] of NEIGHBOR_OFFSETS) {
+            let neighborRow = row + dRow
+            let neighborCol = col + dCol
 
-            if (neighborRow < 0 || neighborRow >= this.height || neighborCol < 0 || neighborCol >= this.width) continue
+            if (this.wrap) {
+                neighborRow = ((neighborRow % this.height) + this.height) % this.height
+                neighborCol = ((neighborCol % this.width) + this.width) % this.width
+            } else if (
+                neighborRow < 0 || neighborRow >= this.height ||
+                neighborCol < 0 || neighborCol >= this.width
+            ) {
+                continue
+            }
 
             if (this.state[neighborRow][neighborCol]) count++
         }

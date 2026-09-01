@@ -8,6 +8,7 @@ type ControlButtons = {
     play?: HTMLElement
     speed?: HTMLSelectElement
     size?: HTMLSelectElement
+    wrap?: HTMLSelectElement
 }
 
 export function bindControls(
@@ -18,6 +19,7 @@ export function bindControls(
 ) {
     let intervalId: ReturnType<typeof setInterval> | undefined
     let speed = Number(buttons.speed?.value) || 1
+    grid.wrap = buttons.wrap?.value !== "off"
 
     const stepDelay = () => BASE_STEP_MS / speed
 
@@ -78,5 +80,9 @@ export function bindControls(
         grid.resize(size)
         onSizeChange?.()
         if (wasPlaying) start()
+    })
+
+    buttons.wrap?.addEventListener("change", () => {
+        grid.wrap = buttons.wrap?.value === "on"
     })
 }
