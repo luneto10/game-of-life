@@ -4,16 +4,13 @@ export function renderGrid(
     container: HTMLElement,
     state: boolean[][]
 ) {
-    container.innerHTML = ""
+    const fragment = document.createDocumentFragment()
 
     state.forEach((row, rowIndex) => {
         row.forEach((isAlive, colIndex) => {
-            const cell = createCell(
-                rowIndex,
-                colIndex,
-                isAlive
-            )
-            container.appendChild(cell)
+            fragment.appendChild(createCell(rowIndex, colIndex, isAlive))
         })
     })
+
+    container.replaceChildren(fragment)
 }

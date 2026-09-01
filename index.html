@@ -5,11 +5,46 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>game-of-life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>Game of Life</title>
 </head>
 
 <body>
     <div id="app">
+        <header class="header">
+            <div class="brand">
+                <p class="brand-kicker">Conway</p>
+                <h1>Game of Life</h1>
+            </div>
+            <div class="toolbar">
+                <label class="field">
+                    <span>Speed</span>
+                    <select data-speed>
+                        <option value="1">1x</option>
+                        <option value="2">2x</option>
+                        <option value="3">3x</option>
+                        <option value="4">4x</option>
+                        <option value="8">8x</option>
+                    </select>
+                </label>
+                <label class="field">
+                    <span>Size</span>
+                    <select data-size>
+                        <option value="20">20×20</option>
+                        <option value="40">40×40</option>
+                        <option value="50">50×50</option>
+                        <option value="80" selected>80×80</option>
+                        <option value="100">100×100</option>
+                        <option value="150">150×150</option>
+                    </select>
+                </label>
+                <button type="button" class="btn btn-primary" data-play>Play</button>
+                <button type="button" class="btn" data-step>Step</button>
+                <button type="button" class="btn btn-muted" data-reset>Reset</button>
+            </div>
+        </header>
         <div data-grid></div>
     </div>
     <script type="module" src="/src/main.ts"></script>
